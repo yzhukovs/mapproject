@@ -15,7 +15,7 @@ class MapsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+        performSearch()
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -30,6 +30,7 @@ class MapsTableViewController: UITableViewController {
         let request = MKLocalSearch.Request()
         request.naturalLanguageQuery = "Park"
         request.region = mapView.region
+        
         
         let search = MKLocalSearch(request: request)
         
@@ -63,6 +64,8 @@ class MapsTableViewController: UITableViewController {
 
     // MARK: - Table view data source
 var matchingItems: [MKMapItem] = [MKMapItem]()
+    
+    
     @IBOutlet weak var mapView: MKMapView!
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
@@ -74,6 +77,25 @@ var matchingItems: [MKMapItem] = [MKMapItem]()
         return 0
     }
 
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation)
+        -> MKAnnotationView? {
+            
+            let identifier = "marker"
+            var view: MKMarkerAnnotationView
+            
+            if let dequeuedView = mapView.dequeueReusableAnnotationView(
+                withIdentifier: identifier)
+                as? MKMarkerAnnotationView {
+                dequeuedView.annotation = annotation
+                view = dequeuedView
+            } else {
+                view =
+                    MKMarkerAnnotationView(annotation: annotation,
+                                           reuseIdentifier: identifier)
+            }
+            return view
+    }
+    
     /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
