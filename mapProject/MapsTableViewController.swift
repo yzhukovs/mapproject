@@ -15,6 +15,8 @@ class MapsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+       
+        
         performSearch()
 
         // Uncomment the following line to preserve selection between presentations
@@ -48,7 +50,7 @@ class MapsTableViewController: UITableViewController {
                     for item in results.mapItems {
                         print("Name = \(item.name ?? "No match")")
                         print("Phone = \(item.phoneNumber ?? "No Match")")
-                        
+                    
                         self.matchingItems.append(item as MKMapItem)
                         print("Matching items = \(self.matchingItems.count)")
                         
@@ -65,18 +67,6 @@ class MapsTableViewController: UITableViewController {
     // MARK: - Table view data source
 var matchingItems: [MKMapItem] = [MKMapItem]()
     
-    
-    @IBOutlet weak var mapView: MKMapView!
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
-    }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
-    }
-
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation)
         -> MKAnnotationView? {
             
@@ -95,6 +85,19 @@ var matchingItems: [MKMapItem] = [MKMapItem]()
             }
             return view
     }
+    
+    @IBOutlet weak var mapView: MKMapView!
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        // #warning Incomplete implementation, return the number of sections
+        return 0
+    }
+
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        // #warning Incomplete implementation, return the number of rows
+        return 0
+    }
+
+    
     
     /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
